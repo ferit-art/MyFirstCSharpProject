@@ -1,0 +1,14 @@
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/bin/Debug/net10.0/TheFirstC#Project
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/bin/Debug/net10.0/TheFirstC#Project.deps.json
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/bin/Debug/net10.0/TheFirstC#Project.runtimeconfig.json
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/bin/Debug/net10.0/TheFirstC#Project.dll
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/bin/Debug/net10.0/TheFirstC#Project.pdb
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.AssemblyInfoInputs.cache
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.AssemblyInfo.cs
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.csproj.CoreCompileInputs.cache
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.dll
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/refint/TheFirstC#Project.dll
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.pdb
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/TheFirstC#Project.genruntimeconfig.cache
+/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/Debug/net10.0/ref/TheFirstC#Project.dll
