@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Cr4aASFENxY=",
+  "dgSpecHash": "UWXJ/LF/1rg=",
   "success": true,
-  "projectFilePath": "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/TheFirstC#Project.csproj",
+  "projectFilePath": "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/TheFirstC#Project.csproj",
   "expectedPackageFiles": [
     "/home/ferit/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
     "/home/ferit/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "/home/ferit/.nuget/packages/mysqlconnector/2.6.1/mysqlconnector.2.6.1.nupkg.sha512",
-    "/home/ferit/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.9/microsoft.aspnetcore.app.ref.10.0.9.nupkg.sha512"
+    "/home/ferit/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.10/microsoft.aspnetcore.app.ref.10.0.10.nupkg.sha512"
   ],
   "logs": []
 }

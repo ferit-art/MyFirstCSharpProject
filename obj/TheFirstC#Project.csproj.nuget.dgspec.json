@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/TheFirstC#Project.csproj": {}
+    "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/TheFirstC#Project.csproj": {}
   },
   "projects": {
-    "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/TheFirstC#Project.csproj": {
+    "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/TheFirstC#Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/TheFirstC#Project.csproj",
+        "projectUniqueName": "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/TheFirstC#Project.csproj",
         "projectName": "TheFirstC#Project",
-        "projectPath": "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/TheFirstC#Project.csproj",
+        "projectPath": "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/TheFirstC#Project.csproj",
         "packagesPath": "/home/ferit/.nuget/packages/",
-        "outputPath": "/home/ferit/Projects/sommar_projekt/TheFirstC#Project/obj/",
+        "outputPath": "/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferit/.nuget/NuGet/NuGet.Config"
@@ -63,7 +63,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[10.0.9, 10.0.9]"
+              "version": "[10.0.10, 10.0.10]"
             }
           ],
           "frameworkReferences": {
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.109/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.110/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -1,0 +1,29 @@
+    services:
+      # Service 1: The MySQL Database Engine
+      db:
+        image: mysql:8.0
+        container_name: mysql-db
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: hemligt
+          MYSQL_DATABASE: todo_db
+        ports:
+          - '3306:3306'
+        volumes:
+          - mysql_data:/var/lib/mysql
+
+      # Service 2: phpMyAdmin (Web GUI to view & manage database tables)
+      phpmyadmin:
+        image: phpmyadmin:latest
+        container_name: my-phpmyadmin
+        restart: always
+        ports:
+          - '8081:80'
+        environment:
+          PMA_HOST: db
+        depends_on:
+          - db
+
+    # Volumes: Saves your database tables on your hard drive so data isn't lost when containers stop
+    volumes:
+      mysql_data:
