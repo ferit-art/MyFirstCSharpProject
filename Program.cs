@@ -4,7 +4,7 @@ namespace TodoApp
 {
     class Program
     {
-        private static string connectionString = "Server=localhost;Database=todo_db;User ID=user;Password=12345;";
+        private static readonly ITodoRepository _repository = new MySqlTodoRepository();
 
         public static void Main(string[] args)
         {
@@ -14,8 +14,10 @@ namespace TodoApp
                 Console.WriteLine("1. Show all tasks");
                 Console.WriteLine("2. Add new task");
                 Console.WriteLine("3. Complete task");
-                Console.WriteLine("4. Exit");
-                Console.WriteLine("Choose between alternatives (1-3): ");
+                Console.WriteLine("4. Uncomplete task");
+                Console.WriteLine("5. Delete task");
+                Console.WriteLine("6. Exit");
+                Console.WriteLine("Choose between alternatives (1-6): ");
 
                 string choice = Console.ReadLine() ?? "";
 
@@ -28,22 +30,37 @@ namespace TodoApp
                     case "2":
                         Console.Write("\n" + "The task's title: ");
                         string title = Console.ReadLine();
-                        AddTask(title);
+                        _repository.Add(title);
+                        ShowTasks();
                         break;
-
 
                     case "3":
                         Console.WriteLine("\n" + "The task's title: ");
-                        string completed_title = Console.ReadLine();
-                        CompleteTask(completed_title);
+                        string completedTitle = Console.ReadLine();
+                        _repository.Complete(completedTitle);
+                        ShowTasks();
                         break;
 
                     case "4":
+                        Console.WriteLine("\n" + "The task's title: ");
+                        string uncompleteTitle = Console.ReadLine();
+                        _repository.Uncomplete(uncompleteTitle);
+                        ShowTasks();
+                        break;
+
+                    case "5":
+                        Console.WriteLine("\n" + "The task's title: ");
+                        string deleteTitle = Console.ReadLine();
+                        _repository.Delete(deleteTitle);
+                        ShowTasks();
+                        break;
+
+                    case "6":
                         Console.WriteLine("\n" + "Bye!");
                         return;
 
                     default:
-                        Console.WriteLine("Invalid answer.");
+                        Console.WriteLine("Invalid option.");
                         break;
                 }
             }
@@ -51,73 +68,25 @@ namespace TodoApp
 
         public static void ShowTasks()
         {
-            using var connection = new MySqlConnection(connectionString);
+            var tasks = _repository.GetAll();
 
-            try
+            Console.WriteLine("\n" + "=== YOUR TODO LIST ===");
+            Console.WriteLine("---------------------------------------------");
+
+            if (tasks.Count == 0)
             {
-                connection.Open();
-                string sql = "SELECT * FROM todos";
-                using var command = new MySqlCommand(sql, connection);
-                using var reader = command.ExecuteReader();
-
-                Console.WriteLine("\n" + "=== YOUR TODO LIST ===");
-                Console.WriteLine("---------------------------------------------");
-
-                while (reader.Read())
+                Console.WriteLine("No tasks found.");
+            }
+            else
+            {
+                foreach (var item in tasks)
                 {
-                    int id = reader.GetInt32("id");
-                    string title = reader.GetString("title");
-                    bool isCompleted = reader.GetBoolean("is_completed");
-
-                    string status = isCompleted ? "[DONE]" : "[]";
-                    Console.WriteLine($"{id}. {status} {title}");
+                    string status = item.IsCompleted ? "[DONE]" : "[ ]";
+                    Console.WriteLine($"{item.Id}. {status} {item.Title}");
                 }
-                Console.WriteLine("---------------------------------------------");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\n" + $"Database Error: {e.Message}");
-            }
-        }
-
-        public static void AddTask(string title)
-        {
-            using var connection = new MySqlConnection(connectionString);
-
-            try
-            {
-                connection.Open();
-                string sql = "INSERT INTO todos (title) Values (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\n" + $"Database Error: {e.Message}");
             }
 
-            ShowTasks();
-        }
-
-        public static void CompleteTask(string title)
-        {
-            using var connection = new MySqlConnection(connectionString);
-
-            try
-            {
-                connection.Open();
-                string sql = "UPDATE `todos` SET `is_completed`='1' WHERE title LIKE (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\n" + $"Database Error: {e.Message}");
-            }
-            ShowTasks();
+            Console.WriteLine("---------------------------------------------");
         }
     }
 }
