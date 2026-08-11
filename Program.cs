@@ -1,4 +1,5 @@
 ﻿using MySqlConnector;
+using System.Threading.Tasks;
 
 namespace TodoApp
 {
@@ -6,7 +7,7 @@ namespace TodoApp
     {
         private static readonly ITodoRepository _repository = new MySqlTodoRepository();
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             while (true)
             {
@@ -24,35 +25,35 @@ namespace TodoApp
                 switch (choice)
                 {
                     case "1":
-                        ShowTasks();
+                        await ShowTasksAsync();
                         break;
 
                     case "2":
                         Console.Write("\n" + "The task's title: ");
                         string title = Console.ReadLine();
-                        _repository.Add(title);
-                        ShowTasks();
+                        await _repository.AddAsync(title);
+                        await ShowTasksAsync();
                         break;
 
                     case "3":
                         Console.WriteLine("\n" + "The task's title: ");
                         string completedTitle = Console.ReadLine();
-                        _repository.Complete(completedTitle);
-                        ShowTasks();
+                        await _repository.CompleteAsync(completedTitle);
+                        await ShowTasksAsync();
                         break;
 
                     case "4":
                         Console.WriteLine("\n" + "The task's title: ");
                         string uncompleteTitle = Console.ReadLine();
-                        _repository.Uncomplete(uncompleteTitle);
-                        ShowTasks();
+                        await _repository.UncompleteAsync(uncompleteTitle);
+                        await ShowTasksAsync();
                         break;
 
                     case "5":
                         Console.WriteLine("\n" + "The task's title: ");
                         string deleteTitle = Console.ReadLine();
-                        _repository.Delete(deleteTitle);
-                        ShowTasks();
+                        await _repository.DeleteAsync(deleteTitle);
+                        await ShowTasksAsync();
                         break;
 
                     case "6":
@@ -66,9 +67,9 @@ namespace TodoApp
             }
         }
 
-        public static void ShowTasks()
+        public static async Task ShowTasksAsync()
         {
-            var tasks = _repository.GetAll();
+            var tasks = await _repository.GetAllAsync();
 
             Console.WriteLine("\n" + "=== YOUR TODO LIST ===");
             Console.WriteLine("---------------------------------------------");
@@ -82,7 +83,7 @@ namespace TodoApp
                 foreach (var item in tasks)
                 {
                     string status = item.IsCompleted ? "[DONE]" : "[ ]";
-                    Console.WriteLine($"{item.Id}. {status} {item.Title}");
+                    Console.WriteLine($"#{item.Id} {status} {item.Title}");
                 }
             }
 

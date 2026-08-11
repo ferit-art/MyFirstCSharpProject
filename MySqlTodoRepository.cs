@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MySqlConnector;
+using System.Threading.Tasks;
 
 namespace TodoApp
 {
@@ -8,7 +9,7 @@ namespace TodoApp
     {
         private readonly string _connectionString = "Server=localhost;Database=todo_db;User ID=user;Password=12345;";
 
-        public List<TodoItem> GetAll()
+        public async Task<List<TodoItem>> GetAllAsync()
         {
 
             var tasks = new List<TodoItem>();
@@ -16,12 +17,12 @@ namespace TodoApp
 
             try
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = "SELECT * FROM todos";
                 using var command = new MySqlCommand(sql, connection);
-                using var reader = command.ExecuteReader();
+                using var reader = await command.ExecuteReaderAsync();
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     tasks.Add(new TodoItem
                     {
@@ -39,17 +40,17 @@ namespace TodoApp
             return tasks;
         }
 
-        public void Add(string title)
+        public async Task AddAsync(string title)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = "INSERT INTO todos (title) Values (@title)";
                 using var command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -57,17 +58,17 @@ namespace TodoApp
             }
         }
 
-        public void Complete(string title)
+        public async Task CompleteAsync(string title)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = "UPDATE `todos` SET `is_completed`='1' WHERE title LIKE (@title)";
                 using var command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -75,17 +76,17 @@ namespace TodoApp
             }
         }
 
-        public void Uncomplete(string title)
+        public async Task UncompleteAsync(string title)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = "UPDATE `todos` SET `is_completed`='0' WHERE title LIKE (@title)";
                 using var command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -93,17 +94,17 @@ namespace TodoApp
             }
         }
 
-        public void Delete(string title)
+        public async Task DeleteAsync(string title)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string sql = "DELETE FROM `todos` WHERE title LIKE (@title)";
                 using var command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@title", title);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {

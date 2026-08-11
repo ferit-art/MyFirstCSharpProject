@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TodoApp
 {
     public interface ITodoRepository
     {
-        List<TodoItem> GetAll();
-        void Add(string title);
-        void Complete(string title);
-        void Uncomplete(string title);
-        void Delete(string title);
+        Task<List<TodoItem>> GetAllAsync();
+        Task AddAsync(string title);
+        Task CompleteAsync(string title);
+        Task UncompleteAsync(string title);
+        Task DeleteAsync(string title);
     }
 }
