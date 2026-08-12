@@ -7,8 +7,8 @@ namespace TodoApp
     {
         Task<List<TodoItem>> GetAllAsync();
         Task AddAsync(string title);
-        Task CompleteAsync(string title);
-        Task UncompleteAsync(string title);
-        Task DeleteAsync(string title);
+        Task CompleteAsync(int id);
+        Task UncompleteAsync(int id);
+        Task DeleteAsync(int id);
     }
 }

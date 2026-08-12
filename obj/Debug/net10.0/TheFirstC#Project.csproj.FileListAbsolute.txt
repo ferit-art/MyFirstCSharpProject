@@ -32,3 +32,4 @@
 /home/ferit/Projects/sommar_projekt/theFirstCSharpProject/obj/Debug/net10.0/TheFirst.A3150386.Up2Date
 /home/ferit/Projects/sommar_projekt/theFirstCSharpProject/obj/Debug/net10.0/TheFirstC#Project.genruntimeconfig.cache
 /home/ferit/Projects/sommar_projekt/theFirstCSharpProject/obj/Debug/net10.0/ref/TheFirstC#Project.dll
+/home/ferit/Projects/sommar_projekt/theFirstCSharpProject/bin/Debug/net10.0/Dapper.dll

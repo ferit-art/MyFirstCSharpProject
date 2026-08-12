@@ -36,24 +36,48 @@ namespace TodoApp
                         break;
 
                     case "3":
-                        Console.WriteLine("\n" + "The task's title: ");
-                        string completedTitle = Console.ReadLine();
-                        await _repository.CompleteAsync(completedTitle);
-                        await ShowTasksAsync();
+                        Console.WriteLine("\n" + "The task ID: ");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out int completeTaskId))
+                        {
+                            await _repository.CompleteAsync(completeTaskId);
+                            await ShowTasksAsync();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a number.");
+                        }
                         break;
 
                     case "4":
-                        Console.WriteLine("\n" + "The task's title: ");
-                        string uncompleteTitle = Console.ReadLine();
-                        await _repository.UncompleteAsync(uncompleteTitle);
-                        await ShowTasksAsync();
+                        Console.WriteLine("\n" + "The task ID: ");
+                        string input1 = Console.ReadLine();
+
+                        if (int.TryParse(input1, out int uncompleteTaskId))
+                        {
+                            await _repository.UncompleteAsync(uncompleteTaskId);
+                            await ShowTasksAsync();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a number.");
+                        }
                         break;
 
                     case "5":
-                        Console.WriteLine("\n" + "The task's title: ");
-                        string deleteTitle = Console.ReadLine();
-                        await _repository.DeleteAsync(deleteTitle);
-                        await ShowTasksAsync();
+                        Console.WriteLine("\n" + "The task ID: ");
+                        string input2 = Console.ReadLine();
+
+                        if (int.TryParse(input2, out int deleteTaskId))
+                        {
+                            await _repository.DeleteAsync(deleteTaskId);
+                            await ShowTasksAsync();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a number.");
+                        }
                         break;
 
                     case "6":

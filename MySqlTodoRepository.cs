@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MySqlConnector;
 using System.Threading.Tasks;
+using Dapper;
 
 namespace TodoApp
 {
@@ -11,33 +12,19 @@ namespace TodoApp
 
         public async Task<List<TodoItem>> GetAllAsync()
         {
-
-            var tasks = new List<TodoItem>();
             using var connection = new MySqlConnection(_connectionString);
-
             try
             {
-                await connection.OpenAsync();
-                string sql = "SELECT * FROM todos";
-                using var command = new MySqlCommand(sql, connection);
-                using var reader = await command.ExecuteReaderAsync();
+                string sqlCommand = "SELECT id, title, is_completed AS IsCompleted FROM todos";
+                var tasks = await connection.QueryAsync<TodoItem>(sqlCommand);
 
-                while (await reader.ReadAsync())
-                {
-                    tasks.Add(new TodoItem
-                    {
-                        Id = reader.GetInt32("id"),
-                        Title = reader.GetString("title"),
-                        IsCompleted = reader.GetBoolean("is_completed")
-                    });
-                }
+                return tasks.ToList();
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n" + $"Database Error: {e.Message}");
+                Console.WriteLine("\n" + $"{e.Message}");
+                return new List<TodoItem>();
             }
-
-            return tasks;
         }
 
         public async Task AddAsync(string title)
@@ -46,11 +33,8 @@ namespace TodoApp
 
             try
             {
-                await connection.OpenAsync();
-                string sql = "INSERT INTO todos (title) Values (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                await command.ExecuteNonQueryAsync();
+                string sql = "INSERT INTO todos (title) Values (@Title)";
+                await connection.ExecuteAsync(sql, new { Title = title });
             }
             catch (Exception e)
             {
@@ -58,17 +42,14 @@ namespace TodoApp
             }
         }
 
-        public async Task CompleteAsync(string title)
+        public async Task CompleteAsync(int id)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                await connection.OpenAsync();
-                string sql = "UPDATE `todos` SET `is_completed`='1' WHERE title LIKE (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                await command.ExecuteNonQueryAsync();
+                string sql = "UPDATE `todos` SET `is_completed`='1' WHERE id LIKE (@Id)";
+                await connection.ExecuteAsync(sql, new { Id = id });
             }
             catch (Exception e)
             {
@@ -76,17 +57,14 @@ namespace TodoApp
             }
         }
 
-        public async Task UncompleteAsync(string title)
+        public async Task UncompleteAsync(int id)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                await connection.OpenAsync();
-                string sql = "UPDATE `todos` SET `is_completed`='0' WHERE title LIKE (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                await command.ExecuteNonQueryAsync();
+                string sql = "UPDATE `todos` SET `is_completed`='0' WHERE id LIKE (@Id)";
+                await connection.ExecuteAsync(sql, new { Id = id });
             }
             catch (Exception e)
             {
@@ -94,17 +72,14 @@ namespace TodoApp
             }
         }
 
-        public async Task DeleteAsync(string title)
+        public async Task DeleteAsync(int id)
         {
             using var connection = new MySqlConnection(_connectionString);
 
             try
             {
-                await connection.OpenAsync();
-                string sql = "DELETE FROM `todos` WHERE title LIKE (@title)";
-                using var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@title", title);
-                await command.ExecuteNonQueryAsync();
+                string sql = "DELETE FROM `todos` WHERE id LIKE (@Id)";
+                await connection.ExecuteAsync(sql, new { Id = id });
             }
             catch (Exception e)
             {
