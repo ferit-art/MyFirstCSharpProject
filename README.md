@@ -52,7 +52,21 @@ In the project's root directory, launch MySQL and phpMyAdmin:
 docker compose up -d
 ```
 
-### Step 2: Run the Application
+### Step 2: Set up the database on PhpMyAdmin
+
+On PhpMyAdmin(`http://localhost:8081`), navigate to the SQL tab after clicking on the automatically created database and dial in this SQL query to set up the necessary table for running the application for the first time.
+
+SQL query:
+
+```sql
+CREATE TABLE IF NOT EXISTS todos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        is_completed TINYINT(1) DEFAULT 0
+    );
+```
+
+### Step 3: Run the Application
 
 Launch the C# console application from the **root** directory:
 
