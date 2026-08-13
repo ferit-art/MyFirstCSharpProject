@@ -1,6 +1,7 @@
-# 📝 Asynchronous CLI TO-DO List Manager
+### 📝 Asynchronous CLI TO-DO List Manager
 
     A simple, 3-tier, starter console TO-DO List management application built with;
+    
     * **C# (.NET)** 
     * **Dapper Micro-ORM** 
     * **MySQL** database 
