@@ -1,7 +1,12 @@
 # 📝 Asynchronous CLI TO-DO List Manager
 
-    A simple, 3-tier, starter console TO-DO List management application built with **C# (.NET)**, **Dapper Micro-ORM**, and a **MySQL** database running inside a **Docker Compose** setup. All information is stored locally via the Docker container.
-
+    A simple, 3-tier, starter console TO-DO List management application built with;
+    * **C# (.NET)** 
+    * **Dapper Micro-ORM** 
+    * **MySQL** database 
+    * Running inside a **Docker Compose** setup. 
+    
+    All information is stored locally via the Docker container.
     Built as a preparation project for a .NET System Developer program.
 
     ***Preview***
