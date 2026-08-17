@@ -44,7 +44,7 @@ Built as a preparation project for a .NET System Developer program.
 * [.NET 10 SDK](https://dotnet.microsoft.com/) (or .NET 8+)
 * [Docker](https://www.docker.com/) & Docker Compose
 
-### Step 1: Start the Database Container
+### Step 1: Start the Database Container (Note: **You have to have the database ready on phpMyAdmin**)
 
 In the project's root directory, launch MySQL and phpMyAdmin:
 
